@@ -1,0 +1,51 @@
+<html>
+<head>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script>
+        var map = L.map('map').setView([{{lat}}, {{lon}}], 12);
+        var pointList1 = {{ pointListFinal|tojson }};
+        var pointList2 = JSON.parse(pointList1);
+        L.polyline(pointList2).addTo(map);
+        console.log({{distance}});
+        console.log({{time}});
+        console.log({{initial_soc}});
+        console.log({{final_threshold}});
+        console.log({{trip_start_at|tojson}});
+
+        let markers2 = {{marker_lst|tojson}};
+        var markers3 = JSON.parse(markers2);
+        var markers4 = markers3.toString();
+        var markers5 = markers4.split(",");
+
+        let arr = [];
+
+        var lst2 = {{ lst|tojson }};
+        var lst3 = JSON.parse(lst2);
+        var lst4 = Object.values(lst3);
+        
+        console.log(lst4);
+
+
+        for (let i = 0; i < lst4.length; i++) {
+            arr.push([lst3[i][0], lst3[i][1]]);
+            
+           }
+        console.log(arr);
+
+        map.fitBounds(arr);
+
+
+        
+        
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'}).addTo(map);
+        {{markers|safe}}
+    </script>
+</body>
+</html>

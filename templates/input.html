@@ -1,0 +1,28 @@
+<html>
+<head>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <form method="post" action=".">
+        <label><p>Origin</p></label>
+        <input name="origin">
+
+        <label><p>Destination</p></label>
+        <input name="destination">
+
+        <label><p>Range At Start</p></label>
+        <input type="number" id="start_soc" name="start_soc"
+       min="0" max="100">
+
+        <label><p>Range At Arrival</p></label>
+        <input type="number" id="arrival_soc" name="arrival_soc" min="0" max="100">
+
+        
+        <label><p>Choose a start time:</p></label>
+        <input name="trip_start_at">
+        
+
+        <input type="submit" value="Find Best Route" id="button">
+    </form>
+</body>
+</html>
